@@ -1,0 +1,48 @@
+@import url("./assets/fonts/stylesheet.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-200;
+    font-family: "Helvetica Neue";
+  }
+}
+
+@layer utilities {
+  /* For Firefox Browser */
+  .scrollbar {
+    scrollbar-width: none;
+  }
+
+  /* For Chrome, EDGE, Opera, Others */
+  .scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .progress {
+    @apply bg-gray-100;
+    height: 5px;
+  }
+
+  .progress::-moz-progress-bar {
+    height: 5px;
+    border: none;
+    @apply bg-violet-300;
+  }
+  
+  .progress::-webkit-progress-bar {
+    height: 5px;
+    border: none;
+    @apply bg-gray-100;
+  }
+  
+  .progress::-webkit-progress-value {
+    @apply bg-violet-300;
+  }
+}
+
+
