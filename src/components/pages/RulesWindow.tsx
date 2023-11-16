@@ -1,12 +1,19 @@
 import { FC } from 'react';
-import Button from './UI/Button'
-import Window from './UI/Window'
+import Button from '../UI/Button'
+import Window from '../UI/Window'
+import { useNavigate } from 'react-router-dom';
 
 interface RulesWindowProps {
 
 }
 
 const RulesWindow: FC<RulesWindowProps> = () => {
+   const navigate = useNavigate();
+
+   function startGame() {
+      navigate('/game');
+   }
+
    return (
       <Window className='w-[576px]'>
          <h1 className='text-center font-medium p-[17px] border-b-[3px] border-gray-100'>
@@ -22,7 +29,7 @@ const RulesWindow: FC<RulesWindowProps> = () => {
                   <li>Каждому игроку дается 2 минуты на размышления, если спустя это время игрок не вводит слово он считается проигравшим</li>
                </ul>
             </div>
-            <Button className='self-center'>Начать игру</Button>
+            <Button className='self-center' onClick={startGame}>Начать игру</Button>
          </div>
       </Window>
    )

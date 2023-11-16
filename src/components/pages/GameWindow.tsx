@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import Window from './UI/Window'
-import Input from './UI/Input';
+import Window from '../UI/Window'
+import Input from '../UI/Input';
 import SendMessageIcon from "/src/assets/send-message.svg";
-import Chat from './Chat';
-import Progress from './UI/Progress';
+import Chat from '../Chat';
+import Progress from '../UI/Progress';
 
 interface GameWindowProps {
 

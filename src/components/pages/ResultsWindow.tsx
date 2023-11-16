@@ -1,12 +1,19 @@
 import { FC } from 'react';
-import Button from './UI/Button'
-import Window from './UI/Window'
+import Button from '../UI/Button'
+import Window from '../UI/Window'
+import { useNavigate } from 'react-router-dom';
 
 interface ResultsWindowProps {
 
 }
 
 const ResultsWindow: FC<ResultsWindowProps> = () => {
+   const navigate = useNavigate();
+
+   function startGame() {
+      navigate('/game');
+   }
+   
    return (
       <Window>
          <div className='text-xl p-10 flex flex-col items-center gap-8 text-center'>
@@ -18,7 +25,7 @@ const ResultsWindow: FC<ResultsWindowProps> = () => {
             <p>Последний город названный победителем<br />
                <span className='font-medium'>Москва</span>
             </p>
-            <Button>Начать новую игру</Button>
+            <Button onClick={startGame}>Начать новую игру</Button>
          </div>
       </Window>
    )
