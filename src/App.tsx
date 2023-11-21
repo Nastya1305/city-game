@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<RulesWindow />} />
         <Route path='/game' element={<GameWindow onFinishGame={(results) => setResults(results)} />} />
-        <Route path='/results' element={<ResultsWindow results={results} />} />
+        <Route path='/results' element={results ? <ResultsWindow results={results} /> : null} />
       </Routes>
     </div>
   )

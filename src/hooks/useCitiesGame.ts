@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { forbiddenLetters } from "../data/forbiddenLetters";
-import citiesArray from '/src/data/cities.json';
+import citiesArray from '../data/cities.json';
 import getRandomInt from "../utils/getRandom";
 
 
