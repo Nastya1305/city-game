@@ -1,4 +1,4 @@
-# [city-game](https://nastya1305.github.io/profile-description-form/)
+# [city-game](https://nastya1305.github.io/city-game/)
 a game whose goal is to name as many Russian cities as possible
 
 ### Technology stack:
