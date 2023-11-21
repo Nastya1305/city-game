@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
-export default function useNow(updateInterval: number, enabled: number | null, cb: (now: number) => void) {
-   const cbRef = useRef(cb);
-   cbRef.current = cb;
+export default function useNow(updateInterval: number, enabled: boolean, onTick: (now: number) => void) {
+   const onTickRef = useRef(onTick);
+   onTickRef.current = onTick;
    const [now, setNow] = useState(Date.now());
 
    useLayoutEffect(() => {
@@ -11,11 +11,11 @@ export default function useNow(updateInterval: number, enabled: number | null, c
       }
 
       setNow(Date.now());
-      cbRef.current?.(Date.now());
+      onTickRef.current?.(Date.now());
 
       const interval = setInterval(() => {
          setNow(Date.now());
-         cbRef.current?.(Date.now());
+         onTickRef.current?.(Date.now());
       }, updateInterval);
 
       return () => {

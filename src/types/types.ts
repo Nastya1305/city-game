@@ -3,7 +3,7 @@
 export enum PlayerType {
    First,
    Second
-};
+}
 
 export interface Results {
    winner: PlayerType,

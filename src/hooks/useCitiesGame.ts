@@ -1,19 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 import { forbiddenLetters } from "../data/forbiddenLetters";
-import cities from '/src/data/cities.json';
+import citiesArray from '/src/data/cities.json';
 import getRandomInt from "../utils/getRandom";
+
 
 export default function useCitiesGame() {
    const citiesMap = useRef<Map<string, string[]>>();
 
    useEffect(() => {
-      citiesMap.current = cities.reduce((citiesMap: Map<string, string[]>, city: string) => {
-         const firstLetter = city[0];
-         let citiesStartingWithLetter = citiesMap.get(firstLetter) || [];
-         citiesStartingWithLetter?.push(city);
-         citiesMap.set(firstLetter, citiesStartingWithLetter);
-         return citiesMap;
-      }, new Map<string, string[]>());
+      function createCitiesMapFromArray() {
+         citiesMap.current = citiesArray.reduce((citiesMap: Map<string, string[]>, city: string) => {
+            const firstLetter = city[0];
+            const citiesStartingWithLetter = citiesMap.get(firstLetter) || [];
+
+            citiesStartingWithLetter?.push(city);
+            citiesMap.set(firstLetter, citiesStartingWithLetter);
+
+            return citiesMap;
+         }, new Map<string, string[]>());
+      }
+
+      createCitiesMapFromArray();
    }, []);
 
 
@@ -34,20 +41,23 @@ export default function useCitiesGame() {
    }
 
 
-   function giveAnswer(lastCity: string): void {
+   function giveAnswer(lastCity: string): boolean {
       const citiesStartingWithLetter = getCitiesStartingWithLetter(getLastLetter(lastCity).toUpperCase());
 
       if (!citiesStartingWithLetter || citiesStartingWithLetter.length === 0) {
-         return;
+         return false;
       }
 
       const randomIndex = getRandomInt(0, citiesStartingWithLetter.length);
       const [answer] = citiesStartingWithLetter.splice(randomIndex, 1);
-      answer && setListedCities(prev => ([...prev, answer]));
+      answer && setListedCities(cities => ([...cities, answer]));
+
+      return true;
    }
 
 
    function getAnswer(answer: string): void {
+
       if (!answer) {
          throw new Error(`Пожалуйста, назовите город`);
       }
@@ -73,7 +83,9 @@ export default function useCitiesGame() {
       }
 
       citiesStartingWithLetter.splice(indexOfAnswer, 1);
-      setListedCities(prev => ([...prev, answer]));
+      setListedCities(cities => ([...cities, answer]));
+
+      
    }
 
 
