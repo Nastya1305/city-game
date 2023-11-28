@@ -22,7 +22,7 @@ const GameWindow: FC<GameWindowProps> = ({ onFinishGame }) => {
    const { listedCities, giveAnswer, getAnswer } = useCitiesGame();
 
    //для общего отсчета времени
-   const allTime = 120000;
+   const allTime = 30000;
    const { restartTimer, msToRestart } = useCountdownTimer(allTime, getResults);
 
    //для ожидания ответа второго игрока

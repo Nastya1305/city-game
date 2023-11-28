@@ -30,8 +30,16 @@ export default function useCitiesGame() {
 
    const getLastLetter = (word: string = lastCity) => {
       const lastLetter = word[word.length - 1];
-      if (forbiddenLetters.includes(lastLetter))
-         return word[word.length - 2];
+
+      if (forbiddenLetters.includes(lastLetter)) {
+         const penultLetter = word[word.length - 2];
+         
+         if (forbiddenLetters.includes(penultLetter)) {
+            return word[word.length - 3];
+         }
+         return penultLetter;
+      }
+      
       return lastLetter;
    }
 
